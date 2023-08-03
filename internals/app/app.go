@@ -60,11 +60,12 @@ func (server *Server) Shutdown() {
 	log.Printf("server stopped")
 
 	ctxShutDown, cancel := context.WithTimeout(server.ctx, 5*time.Second)
-	defer cancel()
 
 	if err := server.srv.Shutdown(ctxShutDown); err != nil {
+		cancel()
 		log.Fatalf("server Shutdown Failed: %s", err)
 	}
 
+	cancel()
 	log.Println("server exited properly")
 }
