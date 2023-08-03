@@ -34,7 +34,6 @@ func (storage *UsersStorage) Upload(fileName string) {
 	if err != nil {
 		log.Fatalln(err)
 	}
-	defer file.Close()
 
 	reader := bufio.NewReader(file)
 
@@ -47,16 +46,19 @@ func (storage *UsersStorage) Upload(fileName string) {
 			if err == io.EOF {
 				break
 			}
+			file.Close()
 			log.Fatalln(err)
 		}
 
 		newUser, err := models.NewUser(record)
 		if err != nil {
+			file.Close()
 			log.Fatalln(err)
 		}
 
 		storage.users[newUser.ID] = newUser
 	}
+	file.Close()
 }
 
 func (storage *UsersStorage) GetUsersList(ids []int64) []models.User {
