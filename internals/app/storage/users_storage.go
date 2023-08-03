@@ -6,9 +6,10 @@ import (
 	"io"
 	"os"
 
+	log "github.com/sirupsen/logrus"
+
 	"github.com/alexeyval/test-task-makves-group/internals/app/models"
 	"github.com/alexeyval/test-task-makves-group/internals/app/user"
-	log "github.com/sirupsen/logrus"
 )
 
 type UsersStorage struct {

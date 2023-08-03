@@ -2,10 +2,12 @@ package user
 
 import (
 	"errors"
-	"github.com/alexeyval/test-task-makves-group/internals/app/models"
-	log "github.com/sirupsen/logrus"
 	"strconv"
 	"strings"
+
+	log "github.com/sirupsen/logrus"
+
+	"github.com/alexeyval/test-task-makves-group/internals/app/models"
 )
 
 func NewUser(record []string) (*models.User, error) {

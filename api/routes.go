@@ -1,8 +1,9 @@
 package api
 
 import (
-	"github.com/alexeyval/test-task-makves-group/internals/app/handlers"
 	"github.com/gorilla/mux"
+
+	"github.com/alexeyval/test-task-makves-group/internals/app/handlers"
 )
 
 func CreateRoutes(userHandler *handlers.UsersHandler) *mux.Router {

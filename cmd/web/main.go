@@ -6,9 +6,10 @@ import (
 	"os/signal"
 	"syscall"
 
+	log "github.com/sirupsen/logrus"
+
 	"github.com/alexeyval/test-task-makves-group/internals/app"
 	"github.com/alexeyval/test-task-makves-group/internals/cfg"
-	log "github.com/sirupsen/logrus"
 )
 
 func main() {

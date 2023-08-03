@@ -6,8 +6,9 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/alexeyval/test-task-makves-group/internals/app/processors"
 	"github.com/gorilla/mux"
+
+	"github.com/alexeyval/test-task-makves-group/internals/app/processors"
 )
 
 type UsersHandler struct {

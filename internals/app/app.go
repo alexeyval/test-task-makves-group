@@ -5,13 +5,14 @@ import (
 	"net/http"
 	"time"
 
+	log "github.com/sirupsen/logrus"
+
 	"github.com/alexeyval/test-task-makves-group/api"
 	"github.com/alexeyval/test-task-makves-group/api/middleware"
 	"github.com/alexeyval/test-task-makves-group/internals/app/handlers"
 	"github.com/alexeyval/test-task-makves-group/internals/app/processors"
 	"github.com/alexeyval/test-task-makves-group/internals/app/storage"
 	"github.com/alexeyval/test-task-makves-group/internals/cfg"
-	log "github.com/sirupsen/logrus"
 )
 
 type Server struct {
