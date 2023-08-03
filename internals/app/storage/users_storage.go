@@ -12,11 +12,16 @@ import (
 	"github.com/alexeyval/test-task-makves-group/internals/app/models"
 )
 
+type Storage interface {
+	Upload(fileName string)
+	GetUsersList(ids []int64) []models.User
+}
+
 type UsersStorage struct {
 	users map[int64]*models.User
 }
 
-func NewStorage(batchSize int) *UsersStorage {
+func NewStorage(batchSize int) Storage {
 	return &UsersStorage{
 		users: make(map[int64]*models.User, batchSize),
 	}
@@ -52,14 +57,6 @@ func (storage *UsersStorage) Upload(fileName string) {
 
 		storage.users[newUser.ID] = newUser
 	}
-}
-
-func (storage *UsersStorage) GetUserByID(id int64) (models.User, bool) {
-	if item, ok := storage.users[id]; ok && item != nil {
-		return *item, true
-	}
-
-	return models.User{}, false
 }
 
 func (storage *UsersStorage) GetUsersList(ids []int64) []models.User {
