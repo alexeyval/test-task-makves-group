@@ -29,7 +29,7 @@ func NewServer(ctx context.Context, config cfg.Cfg) *Server {
 }
 
 func (server *Server) Serve() {
-	log.Println("Starting server")
+	log.Printf("Starting server on port %s", server.config.Port)
 
 	usersStorage := storage.NewStorage(server.config.BatchSize)
 	usersStorage.Upload(server.config.FileName)

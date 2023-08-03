@@ -5,6 +5,7 @@ import (
 	"encoding/csv"
 	"io"
 	"os"
+	"path/filepath"
 
 	log "github.com/sirupsen/logrus"
 
@@ -23,7 +24,7 @@ func NewStorage(batchSize int) *UsersStorage {
 }
 
 func (storage *UsersStorage) Upload(fileName string) {
-	log.Printf("read file: %s", fileName)
+	log.Printf("Read file: %s", filepath.Base(fileName))
 
 	file, err := os.Open(fileName)
 	if err != nil {

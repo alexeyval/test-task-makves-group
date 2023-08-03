@@ -30,7 +30,6 @@ func LoadAndStoreConfig() Cfg {
 	if err != nil {
 		log.Panic(err)
 	}
-	log.Println(cfg)
 
 	return cfg
 }
