@@ -67,7 +67,7 @@ func (storage *UsersStorage) GetUsersList(ids []int64) []models.User {
 
 	for _, id := range ids {
 		item, ok := storage.users[id]
-		if ok {
+		if ok && item != nil {
 			items = append(items, *item)
 		}
 	}
