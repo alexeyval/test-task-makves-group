@@ -19,7 +19,7 @@ func main() {
 	defer close(c)
 	signal.Notify(c, os.Interrupt)
 
-	server := app.NewServer(config, ctx)
+	server := app.NewServer(ctx, config)
 
 	go func() {
 		oscall := <-c

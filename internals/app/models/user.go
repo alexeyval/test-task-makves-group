@@ -2,8 +2,8 @@ package models
 
 type User struct {
 	UserID                    string  `json:"#"`
-	Id                        int64   `json:"id"`
-	Uid                       string  `json:"uid"`
+	ID                        int64   `json:"id"`
+	UID                       string  `json:"uid"`
 	Domain                    string  `json:"domain"`
 	CN                        string  `json:"cn"`
 	Department                string  `json:"department"`
@@ -54,9 +54,9 @@ type User struct {
 }
 
 const (
-	UserId = iota
-	Id
-	Uid
+	UserID = iota
+	ID
+	UID
 	Domain
 	CN
 	Department

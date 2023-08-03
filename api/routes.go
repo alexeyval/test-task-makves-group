@@ -8,7 +8,6 @@ import (
 func CreateRoutes(userHandler *handlers.UsersHandler) *mux.Router {
 	r := mux.NewRouter()
 
-
 	r.HandleFunc("/get-items", userHandler.List).Methods("GET")
 
 	r.NotFoundHandler = r.NewRoute().HandlerFunc(handlers.NotFound).GetHandler()

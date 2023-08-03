@@ -18,7 +18,7 @@ func NewUsersProcessor(storage *storage.UsersStorage) *UsersProcessor {
 }
 
 func (p *UsersProcessor) FindUser(id int64) (models.User, error) {
-	user, ok := p.storage.GetUserById(id)
+	user, ok := p.storage.GetUserByID(id)
 
 	if !ok {
 		return user, errors.New("user not found")

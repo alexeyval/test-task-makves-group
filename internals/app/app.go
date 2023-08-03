@@ -14,20 +14,20 @@ import (
 	log "github.com/sirupsen/logrus"
 )
 
-type AppServer struct {
+type Server struct {
 	config cfg.Cfg
 	ctx    context.Context
 	srv    *http.Server
 }
 
-func NewServer(config cfg.Cfg, ctx context.Context) *AppServer {
-	return &AppServer{
-		config: config,
+func NewServer(ctx context.Context, config cfg.Cfg) *Server {
+	return &Server{
 		ctx:    ctx,
+		config: config,
 	}
 }
 
-func (server *AppServer) Serve() {
+func (server *Server) Serve() {
 	log.Println("Starting server")
 
 	usersStorage := storage.NewStorage(server.config.BatchSize)
@@ -54,10 +54,10 @@ func (server *AppServer) Serve() {
 	}
 }
 
-func (server *AppServer) Shutdown() {
+func (server *Server) Shutdown() {
 	log.Printf("server stopped")
 
-	ctxShutDown, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+	ctxShutDown, cancel := context.WithTimeout(server.ctx, 5*time.Second)
 	defer cancel()
 
 	if err := server.srv.Shutdown(ctxShutDown); err != nil {

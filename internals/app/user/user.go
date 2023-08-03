@@ -12,15 +12,15 @@ func NewUser(record []string) (*models.User, error) {
 	if len(record) != models.CountField {
 		return nil, errors.New("len(record) != CountField")
 	}
-	id, err := strconv.Atoi(record[models.Id])
+	id, err := strconv.Atoi(record[models.ID])
 	if err != nil {
 		return nil, err
 	}
 
 	return &models.User{
-		UserID:                    record[models.UserId],
-		Id:                        int64(id),
-		Uid:                       record[models.Uid],
+		UserID:                    record[models.UserID],
+		ID:                        int64(id),
+		UID:                       record[models.UID],
 		Domain:                    record[models.Domain],
 		CN:                        record[models.CN],
 		Department:                record[models.Department],

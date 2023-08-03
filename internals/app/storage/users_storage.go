@@ -49,11 +49,11 @@ func (storage *UsersStorage) Upload(fileName string) {
 			log.Fatalln(err)
 		}
 
-		storage.users[newUser.Id] = newUser
+		storage.users[newUser.ID] = newUser
 	}
 }
 
-func (storage *UsersStorage) GetUserById(id int64) (models.User, bool) {
+func (storage *UsersStorage) GetUserByID(id int64) (models.User, bool) {
 	if item, ok := storage.users[id]; ok && item != nil {
 		return *item, true
 	}
