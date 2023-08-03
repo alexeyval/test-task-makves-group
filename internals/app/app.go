@@ -41,8 +41,9 @@ func (server *Server) Serve() {
 	routes.Use(middleware.RequestLog)
 
 	server.srv = &http.Server{
-		Addr:    ":" + server.config.Port,
-		Handler: routes,
+		Addr:              ":" + server.config.Port,
+		Handler:           routes,
+		ReadHeaderTimeout: 2 * time.Second,
 	}
 
 	log.Println("Server started")

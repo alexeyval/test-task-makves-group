@@ -24,18 +24,21 @@ func (handler *UsersHandler) Find(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	if vars["id"] == "" {
 		WrapError(w, errors.New("missing id"))
+
 		return
 	}
 
 	id, err := strconv.ParseInt(vars["id"], 10, 64)
 	if err != nil {
 		WrapError(w, err)
+
 		return
 	}
 
 	user, err := handler.processor.FindUser(id)
 	if err != nil {
 		WrapError(w, err)
+
 		return
 	}
 
@@ -51,6 +54,7 @@ func (handler *UsersHandler) List(w http.ResponseWriter, r *http.Request) {
 	queryIDss, ok := r.URL.Query()["id"]
 	if !ok || len(queryIDss) == 0 {
 		WrapError(w, errors.New("no id in parameters"))
+
 		return
 	}
 
@@ -61,6 +65,7 @@ func (handler *UsersHandler) List(w http.ResponseWriter, r *http.Request) {
 			id, err := strconv.ParseInt(queryID, 10, 64)
 			if err != nil {
 				WrapError(w, err)
+
 				return
 			}
 			ids = append(ids, id)
@@ -70,6 +75,7 @@ func (handler *UsersHandler) List(w http.ResponseWriter, r *http.Request) {
 	list, err := handler.processor.ListUser(ids)
 	if err != nil {
 		WrapError(w, err)
+
 		return
 	}
 

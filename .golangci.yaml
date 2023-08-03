@@ -1,5 +1,40 @@
-#linters:
-#  enable-all: true
-#  disable:
-#    - depguard
-#  fast: false
+run:
+  timeout: 1m
+  issues-exit-code: 1
+  tests: true
+
+linters-settings:
+  goimports:
+    local-prefixes: github.com/alexeyval/test-task-makves-group
+  govet:
+    check-shadowing: true
+  dupl:
+    threshold: 200
+  goconst:
+    min-len: 2
+    min-occurrences: 2
+
+
+output:
+  format: colored-line-number
+  print-issued-lines: true
+  print-linter-name: true
+
+linters:
+  disable-all: true
+  enable:
+    - dupl
+    - errcheck
+    - govet
+    - golint
+    - gofmt
+    - gosimple
+    - goconst
+    - gosec
+    - ineffassign
+    - nlreturn
+    - revive
+    - staticcheck
+    - typecheck
+    - unused
+  fast: false

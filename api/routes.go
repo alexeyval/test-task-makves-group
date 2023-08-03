@@ -11,5 +11,6 @@ func CreateRoutes(userHandler *handlers.UsersHandler) *mux.Router {
 	r.HandleFunc("/get-items", userHandler.List).Methods("GET")
 
 	r.NotFoundHandler = r.NewRoute().HandlerFunc(handlers.NotFound).GetHandler()
+
 	return r
 }

@@ -57,6 +57,7 @@ func (storage *UsersStorage) GetUserByID(id int64) (models.User, bool) {
 	if item, ok := storage.users[id]; ok && item != nil {
 		return *item, true
 	}
+
 	return models.User{}, false
 }
 

@@ -4,4 +4,4 @@ run:
 
 .PHONY: lint
 lint:
-	golangci-lint run ./... -v --fix
+	golangci-lint run ./... -v
