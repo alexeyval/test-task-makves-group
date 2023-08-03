@@ -1,5 +1,13 @@
 package models
 
+import (
+	"errors"
+	"strconv"
+	"strings"
+
+	log "github.com/sirupsen/logrus"
+)
+
 type User struct {
 	UserID                    string  `json:"#"`
 	ID                        int64   `json:"id"`
@@ -106,3 +114,85 @@ const (
 	IsService
 	CountField
 )
+
+func NewUser(record []string) (*User, error) {
+	if len(record) != CountField {
+		return nil, errors.New("len(record) != CountField")
+	}
+	id, err := strconv.Atoi(record[ID])
+	if err != nil {
+		return nil, err
+	}
+
+	return &User{
+		UserID:                    record[UserID],
+		ID:                        int64(id),
+		UID:                       record[UID],
+		Domain:                    record[Domain],
+		CN:                        record[CN],
+		Department:                record[Department],
+		Title:                     record[Title],
+		Who:                       record[Who],
+		LogonCount:                record[LogonCount],
+		NumLogons7:                record[NumLogons7],
+		NumShare7:                 record[NumShare7],
+		NumFile7:                  record[NumFile7],
+		NumAd7:                    record[NumAd7],
+		NumN7:                     record[NumN7],
+		NumLogons14:               record[NumLogons14],
+		NumShare14:                record[NumShare14],
+		NumFile14:                 record[NumFile14],
+		NumAd14:                   record[NumAd14],
+		NumN14:                    record[NumN14],
+		NumLogons30:               record[NumLogons30],
+		NumShare30:                record[NumShare30],
+		NumFile30:                 record[NumFile30],
+		NumAd30:                   record[NumAd30],
+		NumN30:                    record[NumN30],
+		NumLogons150:              record[NumLogons150],
+		NumShare150:               record[NumShare150],
+		NumFile150:                record[NumFile150],
+		NumAd150:                  record[NumAd150],
+		NumN150:                   record[NumN150],
+		NumLogons365:              record[NumLogons365],
+		NumShare365:               record[NumShare365],
+		NumFile365:                record[NumFile365],
+		NumAd365:                  record[NumAd365],
+		NumN365:                   record[NumN365],
+		HasUserPrincipalName:      record[HasUserPrincipalName],
+		HasMail:                   record[HasMail],
+		HasPhone:                  record[HasPhone],
+		FlagDisabled:              record[FlagDisabled],
+		FlagLockout:               record[FlagLockout],
+		FlagPasswordNotRequired:   record[FlagPasswordNotRequired],
+		FlagPasswordCantChange:    record[FlagPasswordCantChange],
+		FlagDontExpirePassword:    record[FlagDontExpirePassword],
+		OwnedFiles:                record[OwnedFiles],
+		NumMailboxes:              record[NumMailboxes],
+		NumMemberOfGroups:         record[NumMemberOfGroups],
+		NumMemberOfIndirectGroups: record[NumMemberOfIndirectGroups],
+		MemberOfIndirectGroupsIds: toSliceInt(record[MemberOfIndirectGroupsIds]),
+		MemberOfGroupsIds:         toSliceInt(record[MemberOfGroupsIds]),
+		IsAdmin:                   record[IsAdmin],
+		IsService:                 record[IsService],
+	}, nil
+}
+
+func toSliceInt(s string) []int64 {
+	if strings.TrimSpace(s) == "" {
+		return []int64{}
+	}
+	split := strings.Split(s, ";")
+
+	ints := make([]int64, 0, len(split))
+	for _, v := range split {
+		num, err := strconv.ParseInt(v, 10, 64)
+		if err != nil {
+			log.Errorln("В файле некорректные данные у "+
+				"MemberOfIndirectGroupsIds или MemberOfGroupsIds:", s)
+		}
+		ints = append(ints, num)
+	}
+
+	return ints
+}

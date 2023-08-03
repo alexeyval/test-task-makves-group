@@ -10,7 +10,6 @@ import (
 	log "github.com/sirupsen/logrus"
 
 	"github.com/alexeyval/test-task-makves-group/internals/app/models"
-	"github.com/alexeyval/test-task-makves-group/internals/app/user"
 )
 
 type UsersStorage struct {
@@ -46,7 +45,7 @@ func (storage *UsersStorage) Upload(fileName string) {
 			log.Fatalln(err)
 		}
 
-		newUser, err := user.NewUser(record)
+		newUser, err := models.NewUser(record)
 		if err != nil {
 			log.Fatalln(err)
 		}
