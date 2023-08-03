@@ -32,6 +32,7 @@ linters:
     - goconst
     - gosec
     - goimports
+    - gocritic
     - ineffassign
     - nlreturn
     - revive
