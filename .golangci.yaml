@@ -24,6 +24,7 @@ linters:
   disable-all: true
   enable:
     - dupl
+    - deadcode
     - errcheck
     - govet
     - golint
@@ -33,10 +34,17 @@ linters:
     - gosec
     - goimports
     - gocritic
+    - gochecknoglobals
     - ineffassign
+    - misspell
+    - maligned
     - nlreturn
+    - prealloc
     - revive
     - staticcheck
+    - scopelint
     - typecheck
     - unused
+    - unparam
+    - varcheck
   fast: false
