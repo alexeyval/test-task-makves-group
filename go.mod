@@ -1,6 +1,6 @@
 module github.com/alexeyval/test-task-makves-group
 
-go 1.20
+go 1.18
 
 require (
 	github.com/gorilla/mux v1.8.0
